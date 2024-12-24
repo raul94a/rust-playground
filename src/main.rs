@@ -1,9 +1,11 @@
 use point::Point;
 use square::Square;
 use triangle::Triangle;
+use animal_trait::AnimalTrait;
 mod point;
 mod square;
 mod triangle;
+pub mod animal_trait;
 
 fn main() {
     let test = 5;
@@ -65,7 +67,11 @@ fn main() {
     // test high order fn
     let length = triangle.high_order_function(|l| format!("La longitud es de {}",l));
     println!("length {}",length);
-    
+
+
+    let number : i32 = 99;
+
+    number.makeSound(length);
 }
 
 fn is_odd(n: u32) -> bool {

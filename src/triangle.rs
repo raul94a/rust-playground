@@ -1,5 +1,6 @@
     use crate::point::Point;
-    use rand::{random, Rng};
+
+    use rand::{Rng};
 
     pub struct Triangle {
         a: Point,
