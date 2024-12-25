@@ -1,4 +1,4 @@
-    use crate::point::Point;
+    use crate::{perimeter::HasPerimeter, point::Point};
 
     use rand::{Rng};
 
@@ -6,6 +6,12 @@
         a: Point,
         b: Point,
         c: Point,
+    }
+
+    impl HasPerimeter for Triangle {
+        fn perimeter(&self) -> f64 {
+            return (self.a() + self.b() + self.c()).into()
+        }
     }
 
     impl Triangle {

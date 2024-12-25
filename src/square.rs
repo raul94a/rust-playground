@@ -1,10 +1,24 @@
-use crate::point::Point;
+use crate::{perimeter::HasPerimeter, point::Point};
+use crate:: {area::HasArea};
+
 #[derive(Debug)]
 pub struct Square {
     top_left: Point,
     top_right: Point,
     bottom_right: Point,
     bottom_left: Point,
+}
+
+impl HasPerimeter for Square {
+
+    fn perimeter(&self) -> f64 {
+        return (2*self.width() + 2*self.height()).into()
+    }
+}
+impl HasArea for Square {
+    fn area(&self) -> f64 {
+        return (self.width() * self.height()).into();
+    }
 }
 
 impl Square {
@@ -54,17 +68,15 @@ impl Square {
     pub fn width(&self) -> i32 {
         let Point { x: x1, y: _ } = self.top_left; // x1 para anchura
         let Point { x: x2, y: __ } = self.top_right; // x2 para acnchura
-        
-
         return (x1 - x2).abs();
     }
 
-    pub fn area(&self) -> i32 {
-        return self.width() * self.height();
+    pub fn area(&self) ->f64 {
+        return HasArea::area(self);
     }
 
-    
-    pub fn perimeter(&self) -> i32 {
-        return 2 * self.height() + 2* self.width();
+    pub fn perimeter(&self) -> f64 {
+        return HasPerimeter::perimeter(self);
     }
+    
 }

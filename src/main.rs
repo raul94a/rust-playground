@@ -1,3 +1,4 @@
+use perimeter::HasPerimeter;
 use point::Point;
 use square::Square;
 use triangle::Triangle;
@@ -6,6 +7,8 @@ mod point;
 mod square;
 mod triangle;
 pub mod animal_trait;
+pub mod area;
+pub mod perimeter;
 
 fn main() {
     let test = 5;
@@ -28,7 +31,7 @@ fn main() {
 
     // Lets create a square!
 
-    let square = Square::new(
+    let square = &Square::new(
         Point { x: 0, y: 2 },
         Point { x: 2, y: 2 },
         Point { x: 2, y: 0 },
@@ -51,7 +54,7 @@ fn main() {
         .sum(); // Sum them
     println!("functional style: {}", sum_of_squared_odd_numbers);
 
-    let triangle = Triangle::new(
+    let triangle = &Triangle::new(
         Point { x: 0, y: 0 },
         Point { x: 4, y: 0 },
         Point { x: 3, y: 5 },
@@ -67,13 +70,18 @@ fn main() {
     // test high order fn
     let length = triangle.high_order_function(|l| format!("La longitud es de {}",l));
     println!("length {}",length);
-
-
     let number : i32 = 99;
+    number.make_sound(length);
 
-    number.makeSound(length);
+    println!("El perímetro del cuadrado con la función getPerimeter: {}",getPerimeter(square));
+    println!("El perímetro del triángulo con la función getPerimeter: {}",getPerimeter(triangle));
+
 }
 
 fn is_odd(n: u32) -> bool {
     return n % 2 == 0;
+}
+
+fn getPerimeter<T: HasPerimeter>(t: &T) -> f64{
+    return t.perimeter();
 }
